@@ -1,117 +1,252 @@
-## Title of the Project
-An Interpretability-Driven AI Framework for Soil Fertility Prediction and Sustainable Crop Recommendation
 
-## About
-<!--Detailed Description about the project-->
-The Intelligent Agriculture Assistant is a smart decision-support system designed to assist farmers, researchers, and agricultural officers in analyzing soil health, recommending suitable crops, and identifying optimal fertilizers. The system leverages advanced machine learning models and SHAP-based interpretability to provide transparent, data-driven suggestions that enhance agricultural productivity and sustainability.
-The Intelligent Agriculture Assistant is developed to simplify and enhance agricultural decision-making by integrating machine learning with explainable AI. Farmers often struggle with determining soil fertility, choosing appropriate crops, or selecting optimal fertilizers due to limited technical knowledge or lack of access to expert agronomists.
+#  NeuroFirewall – AI-Powered Real-Time Brainwave Threat Detection
 
-This project addresses these challenges by providing:
+### **An Intelligent EEG-based Cyber Defense Simulation System**
 
-A multi-model ML system (RandomForest + XGBoost) capable of predicting soil fertility, crop suitability, and fertilizer requirements.
+NeuroFirewall is an **AI-driven real-time EEG (brainwave) analysis system** built using **TensorFlow, Streamlit, and dynamic neural visualizations**.
+It simulates brain activity, classifies emotional/threat levels using a neural network model, and provides **live visualization, adaptive background transitions, sound alerts, and threat logs**.
 
-A SHAP interpretability layer that explains why each prediction was made in clear, human-understandable terms.
+##  **Features**
 
-A user-friendly Gradio interface enabling users to input soil and environmental parameters and instantly receive insights supported by visual charts and explanations.
+###  **1. AI EEG Emotion/Threat Classification**
 
-The assistant aims to promote data-driven farming practices, improve yield quality, and increase accessibility to AI-powered agronomy tools.
+* ML model trained on *emotions.csv*
+* Predicts 3 states:
 
-## Features
-- SHAP-based Explainable AI — Every prediction is accompanied by a feature-impact explanation.
-- Multi-model Architecture — Separate ML models for soil fertility, crop recommendation, and fertilizer prediction.
-- User-Friendly Interface — Built using Gradio with multi-page layout and graphical visualizations.
-- High Scalability — Modular architecture allows new crops, soil types, or fertilizer databases to be added easily.
-- Fast Inference — Optimized ensemble models ensure low prediction latency.
-- Language Support — Output available in English and Tamil using a translation engine.
-- Graphical Insights — Probability distribution graphs for each ML prediction.
-- PDF Report Generation (Optional) — One-click export for results with explanations and plots.
-## Requirements
-<!--List the requirements of the project as shown below-->
-### Operating System
+  * **Safe**
+  * **Alert**
+  * **Harmful**
 
-64-bit Windows 10/11 or Ubuntu 18.04+
+###  **2. Real-Time EEG Signal Simulation**
 
-(Compatible with Google Colab and cloud platforms)
+* Generates synthetic EEG data based on noise scaling
+* Streams dynamically to the UI at runtime
 
-### Development Environment
+###  **3. Neural Activity Heatmap Visualization**
 
-Python 3.8 or later
+* Animated brain activity using Matplotlib
+* Color-coded activation intensity maps
 
-### Machine Learning Frameworks
+###  **4. Live Adaptive Background System**
 
-XGBoost – for gradient boosting-based prediction
+* Background color changes based on threat level:
 
-RandomForest (Scikit-learn) – ensemble learning
+  * 🟩 Safe → Green
+  * 🟧 Alert → Orange
+  * 🟥 Harmful → Red
+* Auto-clears previous background styles to avoid stacking
 
-### Explainability Framework
+###  **5. Audio Feedback Engine**
 
-SHAP (SHapley Additive exPlanations) – core method for interpretability
+* Uses **pygame** to generate sound tones for each threat state
 
-### Image & Plotting Libraries
+###  **6. Real-Time Threat Logging**
 
-Matplotlib / Seaborn – for probability visualizations
+* Live timestamped entries of:
 
-PDFKit / ReportLab (optional) – for generating downloadable PDF reports
+  * State (Safe/Alert/Harmful)
+  * Predicted emotion
+  * Confidence
 
-### Interface Framework
+###  **7. One-Click Live EEG Dashboard**
 
-Gradio – modern, web-based UI with multipage layout
+* Dynamic waveform
+* Neural heatmap
+* Threat alerts
+* Toast notifications
+* Smooth background transitions
 
-### Other Dependencies
+#  Project Structure
 
-pandas
+```
+NeuroFirewall/
+│
+├── main.py                 # Streamlit live dashboard UI  :contentReference[oaicite:2]{index=2}
+├── train_model.py          # Model training and saving     :contentReference[oaicite:3]{index=3}
+│
+├── data/
+│   └── emotions.csv        # Training dataset
+│
+├── models/
+│   ├── neuro_firewall_real.h5
+│   ├── scaler.pkl
+│   └── label_encoder.pkl
+│
+└── README.md
+```
 
-numpy
+#  Dataset Used
 
-imbalanced-learn (SMOTE)
+The project uses an **emotional EEG dataset**:
 
-deep-translator
+* Features = EEG signal values
+* Target label = `"label"` column (Safe / Alert / Harmful)
 
-IDE / Environment
+Dataset is loaded in both scripts:
+✔ `main.py` (for live simulation)
+✔ `train_model.py` (for training)
 
-Google Colab
+#  How It Works
 
-## System Architecture
-<!--Embed the system architecture diagram as shown below-->
+## ** 1. Model Training (train_model.py)**
 
-<img width="818" height="444" alt="image" src="https://github.com/user-attachments/assets/91510614-814f-4e64-a55c-fdab4a4d1a17" />
+This script:
 
+* Loads dataset
+* Encodes labels
+* Scales features
+* Creates a feedforward neural network
+* Trains on EEG data
+* Saves:
 
+  * Model → `neuro_firewall_real.h5`
+  * Scaler
+  * Label encoder
 
-## Output
+➡ Run:
 
-<!--Embed the Output picture at respective places as shown below as shown below-->
-#### Output1 - Recommendation explanations
-<img width="1865" height="647" alt="image" src="https://github.com/user-attachments/assets/05d2fb5f-47a1-409c-b6a7-ef56311bb09d" />
+```bash
+python train_model.py
+```
 
-
-
-#### Output2 - Graphical explanations
-<img width="1715" height="563" alt="image" src="https://github.com/user-attachments/assets/ecd9d01e-5f98-4b7b-9b82-8af24612768b" />
-
-
-#### Accuracy
-<img width="516" height="490" alt="image" src="https://github.com/user-attachments/assets/2097570e-f70a-4fee-a1c9-436002f6954c" />
-
-<img width="468" height="197" alt="image" src="https://github.com/user-attachments/assets/cd4a440c-1b05-4f26-aa6a-60e8301cca7a" />
-
+This generates everything required for live prediction.
 
 
+## ** 2. Live EEG Dashboard (main.py)**
 
+The Streamlit UI does the following:
+
+### **Signal Generation**
+
+Simulates EEG based on “level”:
+
+```python
+generate_eeg_signal(level)
+```
+
+### **Prediction**
+
+Runs inference:
+
+```python
+pred = model.predict(eeg_scaled)
+```
+
+### **Neural Visualization**
+
+Draws real-time activity map:
+
+```python
+draw_dynamic_brain(ax, activity)
+```
+
+### **Background Control**
+
+Ensures clean style management:
+
+* `reset_background()`
+* `set_background(color, opacity)`
+
+### **Audio Alerts**
+
+Plays tones via pygame mixer.
+
+### **Threat Log**
+
+UI panel for ongoing events.
+
+➡ Run locally:
+
+```bash
+streamlit run main.py
+```
+
+#  How to Run the Project
+
+### **1. Clone the repo**
+
+```bash
+git clone https://github.com/yourusername/neurofirewall.git
+cd neurofirewall
+```
+
+### **2. Install dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+### **3. Train the Model (optional)**
+
+```bash
+python train_model.py
+```
+
+### **4. Start the Dashboard**
+
+```bash
+streamlit run main.py
+```
+
+
+
+
+#  Output Preview
+<img width="1917" height="955" alt="image" src="https://github.com/user-attachments/assets/c2f0009b-d347-4289-9c7c-2257d63a45a0" />
+
+## 1.Safe
+<img width="1916" height="966" alt="image" src="https://github.com/user-attachments/assets/4b186907-172e-46c7-9a50-dea655e4b99c" />
+<img width="1919" height="970" alt="image" src="https://github.com/user-attachments/assets/82fe1ef8-70d8-40d2-8e9e-38758a5d0771" />
+
+## 2.Alert
+<img width="1919" height="944" alt="image" src="https://github.com/user-attachments/assets/7a0d751d-905a-433b-a3ad-e4617ac9411a" />
+<img width="1918" height="963" alt="image" src="https://github.com/user-attachments/assets/cb9a978e-682c-454b-aef7-3f6c72214c33" />
+
+## 3.Harmful
+<img width="1917" height="961" alt="image" src="https://github.com/user-attachments/assets/95891793-67cd-4eb6-b6eb-327c0299d4c5" />
+<img width="1919" height="969" alt="image" src="https://github.com/user-attachments/assets/83ed943a-888e-428b-a002-8bd17bbaee59" />
+
+
+
+
+#  Tech Stack
+
+| Component         | Technology         |
+| ----------------- | ------------------ |
+| ML Model          | TensorFlow / Keras |
+| UI                | Streamlit          |
+| Signal Simulation | NumPy              |
+| Audio System      | Pygame             |
+| Visualization     | Matplotlib         |
+| Preprocessing     | Scikit-learn       |
+| Model Storage     | Joblib + H5        |
+
+#  Future Enhancements
+
+* Real EEG hardware integration
+* Cloud activity storage
+* Multi-user dashboard
+* Reinforcement learning for adaptive calibration
+* API endpoint for external systems
+* 
 ## Results and Impact
-<!--Give the results and impact as shown below-->
-The Intelligent Agriculture Assistant significantly improves agricultural decision-making by providing farmers and agronomists with:
-Faster and more reliable soil fertility assessment
-Clear crop recommendations based on scientific data
-Fertilizer suggestions that reduce wastage and improve yield
-Transparent AI explanations for trust-building and educational value
-By integrating explainable AI, the system ensures users understand why a prediction was made, making it more trustworthy and suitable for real-world adoption.
-This project demonstrates the practical application of Machine Learning and Explainable AI in the agricultural domain, contributing toward smart farming, precision agriculture, and sustainable resource management.
+NeuroFirewall demonstrates a novel application of artificial intelligence by integrating brainwave analysis with cybersecurity threat detection. The system delivers the following outcomes:
+
+- Early identification of potential threats through cognitive intent analysis.
+
+- Real-time monitoring of neural activity, enabling proactive defense mechanisms.
+
+- Improved transparency and trust through explainable AI-driven decision insights.
+
+- Enhanced awareness of human factors in cybersecurity, highlighting the role of cognitive behavior in threat modeling.
+
+By introducing EEG-based intelligence into cyber defense simulations, NeuroFirewall showcases the feasibility of human-centered security systems. The project contributes to emerging research areas such as neuro-cybersecurity, brain–computer interfaces, and AI-driven threat intelligence, offering a foundation for future real-world applications.
 
 ## Articles published / References
-1. H. Chandra et al., "Explainable AI for Soil Fertility Prediction," IEEE Access, 2023, doi: 10.1109/ACCESS.2023.3311827.
-2. A. Yenkikar, V. P. Mishra, M. Bali, and T. Ara, "An explainable AI-based hybrid machine learning model for interpretability and enhanced crop yield prediction," MethodsX, vol. 15, p. 103442, 2025.
-3. Dong et al., "Enhancing soil organic carbon prediction by unraveling the role of crop residue coverage using interpretable machine learning," Geoderma, vol. 455, p. 117225, 2025.
+1. J. R. Wolpaw et al., “Brain–Computer Interfaces for Communication and Control,” Proceedings of the IEEE, vol. 113, no. 6, pp. 767–791.
+2. Y. Bashivan et al., “Learning Representations from EEG with Deep Recurrent-Convolutional Neural Networks,” International Conference on Learning Representations (ICLR).
+3. S. K. Sahoo et al., “Deep Learning-Based EEG Signal Classification for Cognitive State Detection,” IEEE Transactions on Neural Systems and Rehabilitation Engineering.
+
 
 
 
